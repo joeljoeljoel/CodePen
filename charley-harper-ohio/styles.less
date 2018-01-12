@@ -1,0 +1,42 @@
+@red: #d62d2e;
+@white: #ffffff;
+.center() {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+div {
+    position: absolute;
+}
+.bird {
+    width: 50vw;
+    margin: auto;
+    position: relative;
+}
+.body {
+    background-color: @red;
+    border-radius: 50%;
+    width: 30vw;
+    height: 30vw;
+    top: 10vw;
+    .center;
+}
+
+.wing {
+    background-color: @red;
+    border-radius: 50%;
+    width: 50vw;
+    height: 50vw;
+    top: 10vw;
+    .center;
+    &:before {
+        content: '';
+        position: absolute;
+        background-color: @white;
+        border-radius: 50%;
+        width: 47vw;
+        height: 47vw;
+        top: 10vw;
+        .center;
+    }
+}
