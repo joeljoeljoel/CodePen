@@ -1,8 +1,24 @@
-@red: #d62d2e;
+@red: rgba(214, 45, 46, 1);
 @white: #ffffff;
+@black: #000;
+@orange: #e0b143;
+@unit: 2vw;
 .center() {
     left: 50%;
     transform: translateX(-50%);
+}
+.circle(@d) {
+    width: @d * @unit;
+    height: @d * @unit;
+    border-radius: 50%;
+}
+.rectangle(@w, @h: @w) {
+    width: @w * @unit;
+    height: @h * @unit;
+}
+.pseudo {
+    content: '';
+    position: absolute;
 }
 
 div {
@@ -12,31 +28,138 @@ div {
     width: 50vw;
     margin: auto;
     position: relative;
+    // transform: rotate(-30deg);
 }
 .body {
-    background-color: @red;
-    border-radius: 50%;
-    width: 30vw;
-    height: 30vw;
     top: 10vw;
+    background-color: @red;
+    .circle(10);
     .center;
 }
 
-.wing {
+.head {
+    top: 2vw;
     background-color: @red;
-    border-radius: 50%;
-    width: 50vw;
-    height: 50vw;
-    top: 10vw;
+    .rectangle(5, 8.25);
+    .center;
+    padding: 0 1vw;
+
+    &:before, &:after  {
+        .pseudo;
+        left: 6vw;
+        bottom: 4.92vw;
+        .circle(12);
+        background-color: @white;
+    }
+
+    &:after {
+        left: auto;
+        right: 6vw;
+    }
+}
+
+.face {
+    background-color: @black;
+    top: 8vw;
+    .rectangle(3.5, 2.5);
+    .center;
+    z-index: 1;
+    &:after {
+        .pseudo;
+        .circle(3.5);
+        top: 1.5vw;
+        background-color: @black;
+    }
+}
+.beak {
+    .rectangle(3, 1);
+    .center;
+    top: 3vw;
+    z-index: 1;
+    background-color: @orange;
+
+    &:after {
+        .pseudo;
+        .circle(3);
+        top: -3vw;
+        background: linear-gradient(to bottom, @orange 0%,@orange 50%, transparent 50%, transparent 100%);
+    }
+
+    .mouth {
+        bottom: 0;
+        width: 100%;
+        &:after {
+            .pseudo;
+            width: 3.5vw;
+            background-color: @black;
+            height: 2px;
+            right: 3vw;
+            bottom: -2px;
+            transform-origin: bottom right;
+            transform: rotate(30deg);
+
+        }
+        &:before {
+            .pseudo;
+            width: 3.5vw;
+            background-color: @black;
+            height: 2px;
+            left: 3vw;
+            transform-origin: bottom left;
+            transform: rotate(-30deg);
+        }
+    }
+}
+
+.eyes {
+    .rectangle(3.5, 2);
+    .center;
+    &:after, &:before {
+        .pseudo;
+        .circle(0.5vw);
+        background-color: @black;
+        top: -0.85vw;
+    }
+
+    &:after {
+        right: -0.85vw;
+    }
+
+    &:before {
+        left: -0.85vw;
+    }
+}
+
+.wing {
+    background: linear-gradient(to right, @red 0%,@red 50%, transparent 50%, transparent 100%);
+    .circle(16);
+    top: 11vw;
     .center;
     &:before {
-        content: '';
-        position: absolute;
-        background-color: @white;
-        border-radius: 50%;
-        width: 47vw;
-        height: 47vw;
-        top: 10vw;
-        .center;
+        .pseudo;
+        .circle(16);
+        left: 1vw;
+        background: linear-gradient(to right, @white 0%,@white 50%, transparent 50%, transparent 100%);
+    }
+
+    &.right {
+        background: linear-gradient(to left, @red 0%,@red 50%, transparent 50%, transparent 100%);
+        &:before {
+            left: auto;
+            right: 1vw;
+            background: linear-gradient(to left, @white 0%,@white 50%, transparent 50%, transparent 100%);
+        }
+    }
+}
+
+.tail {
+    .rectangle(3.5, 7);
+    .center;
+    display: flex;
+    .feather {
+        background-color: @red;
+        flex: 1;
+        position: static;
+        margin: 0 1px;
     }
 }
