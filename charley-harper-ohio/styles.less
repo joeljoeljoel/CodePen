@@ -31,48 +31,64 @@ div {
     // transform: rotate(-30deg);
 }
 .body {
-    top: 10vw;
+    top: 12vw;
     background-color: @red;
     .circle(10);
     .center;
 }
 
 .head {
-    top: 2vw;
-    background-color: @red;
+    top: 4vw;
     .rectangle(5, 8.25);
     .center;
     padding: 0 1vw;
 
-    &:before, &:after  {
-        .pseudo;
-        left: 6vw;
-        bottom: 4.92vw;
-        .circle(12);
-        background-color: @white;
-    }
+    // &:before, &:after  {
+    //     .pseudo;
+    //     left: 6vw;
+    //     bottom: 4.92vw;
+    //     .circle(12);
+    //     background-color: @white;
+    // }
 
-    &:after {
-        left: auto;
-        right: 6vw;
-    }
+    // &:after {
+    //     left: auto;
+    //     right: 6vw;
+    // }
+}
+.crest {
+    top: 0.4vw;
+    .rectangle(5, 5);
+    .center;
+    transform: translateX(-50%) scale(1.00000001);
+    background-color: @red;
+    background-image:
+        radial-gradient(circle at 39vw -13.5vw, transparent 0%, transparent 80%, white 80%, white 80.5%, transparent 80.5%, transparent 100%),
+        radial-gradient(circle at -29vw -13.5vw, transparent 0%, transparent 80%, white 80%, white 80.5%, transparent 80.5%, transparent 100%)
+    ;
+    -webkit-mask-image:
+        radial-gradient(circle at 39vw -13.5vw, white 0%, white 80%, transparent 80%, transparent 100%),
+        radial-gradient(circle at -29vw -13.5vw, transparent 0%, transparent 80%, white 80%, white 100%)
+    ;
+    -webkit-mask-composite: xor;
+
 }
 
 .face {
     background-color: @black;
     top: 8vw;
-    .rectangle(3.5, 2.5);
+    .rectangle(4, 2.5);
     .center;
     z-index: 1;
     &:after {
         .pseudo;
-        .circle(3.5);
-        top: 1.5vw;
+        .circle(4);
+        top: 1.25vw;
         background-color: @black;
     }
 }
 .beak {
-    .rectangle(3, 1);
+    .rectangle(3.25, 1);
     .center;
     top: 3vw;
     z-index: 1;
@@ -80,7 +96,7 @@ div {
 
     &:after {
         .pseudo;
-        .circle(3);
+        .circle(3.25);
         top: -3vw;
         background: linear-gradient(to bottom, @orange 0%,@orange 50%, transparent 50%, transparent 100%);
     }
@@ -90,70 +106,65 @@ div {
         width: 100%;
         &:after {
             .pseudo;
-            width: 3.5vw;
+            width: 4.5vw;
             background-color: @black;
             height: 2px;
             right: 3vw;
             bottom: -2px;
             transform-origin: bottom right;
-            transform: rotate(30deg);
+            transform: rotate(27deg);
 
         }
         &:before {
             .pseudo;
-            width: 3.5vw;
+            width: 4.5vw;
             background-color: @black;
             height: 2px;
             left: 3vw;
             transform-origin: bottom left;
-            transform: rotate(-30deg);
+            transform: rotate(-27deg);
         }
     }
 }
 
 .eyes {
-    .rectangle(3.5, 2);
+    .rectangle(4, 2);
     .center;
     &:after, &:before {
         .pseudo;
         .circle(0.5vw);
         background-color: @black;
-        top: -0.85vw;
+        top: -0.75vw;
     }
 
     &:after {
-        right: -0.85vw;
+        right: -0.95vw;
     }
 
     &:before {
-        left: -0.85vw;
+        left: -0.95vw;
     }
 }
 
-.wing {
-    background: linear-gradient(to right, @red 0%,@red 50%, transparent 50%, transparent 100%);
-    .circle(16);
-    top: 11vw;
+.wings {
+    background: @red;
+    width: 21.5*@unit;
+    height: 18.5*@unit;
+    border-radius: 50%;
+    top: 13vw;
     .center;
     &:before {
         .pseudo;
         .circle(16);
-        left: 1vw;
-        background: linear-gradient(to right, @white 0%,@white 50%, transparent 50%, transparent 100%);
-    }
-
-    &.right {
-        background: linear-gradient(to left, @red 0%,@red 50%, transparent 50%, transparent 100%);
-        &:before {
-            left: auto;
-            right: 1vw;
-            background: linear-gradient(to left, @white 0%,@white 50%, transparent 50%, transparent 100%);
-        }
+        width: 19.5*@unit;
+        height: 19*@unit;
+        left: 2vw;
+        background: white;
     }
 }
 
 .tail {
-    .rectangle(3.5, 7);
+    .rectangle(4, 7);
     .center;
     display: flex;
     .feather {
